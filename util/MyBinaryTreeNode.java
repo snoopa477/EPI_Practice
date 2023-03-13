@@ -181,7 +181,7 @@ public class MyBinaryTreeNode<T> {
 	public static MyBinaryTreeNode<Integer> makeFigure10_01Tree(){
 		
 		
-		MyBinaryTreeNode<Integer> nodeM = new MyBinaryTreeNode<>(641, 'A');
+		MyBinaryTreeNode<Integer> nodeM = new MyBinaryTreeNode<>(641, 'M');
 		
 		MyBinaryTreeNode<Integer> nodeH = new MyBinaryTreeNode<>(17, 'H');
 		MyBinaryTreeNode<Integer> nodeL = new MyBinaryTreeNode<>(401, 'L', null, nodeM);

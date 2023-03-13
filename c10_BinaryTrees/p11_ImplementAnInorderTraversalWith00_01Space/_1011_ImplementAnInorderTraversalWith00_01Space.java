@@ -13,20 +13,23 @@ public class _1011_ImplementAnInorderTraversalWith00_01Space {
 		while (curr != null) {
 			BinaryTree<Integer> next;
 			if (curr.parent == prev) {
-// We came down to curr from prev.
+				// We came down to curr from prev.
 				if (curr.left != null) { // Keep going left.
 					next = curr.left;
-				} else {
+				} 
+				else {
 					result.add(curr.data);
-// Done with left, so go right if right is not empty.
-// Otherwise , go up.
+					// Done with left, so go right if right is not empty.
+					// Otherwise , go up.
 					next = (curr.right != null) ? curr.right : curr.parent;
 				}
-			} else if (curr.left == prev) {
+			} 
+			else if (curr.left == prev) {
 				result.add(curr.data);
 // Done with left, so go right if right is not empty. Otherwise , go up.
 				next = (curr.right != null) ? curr.right : curr.parent;
-			} else { // Done with both children , so move up.
+			} 
+			else { // Done with both children , so move up.
 				next = curr.parent;
 
 			}
