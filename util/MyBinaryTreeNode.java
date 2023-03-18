@@ -11,7 +11,8 @@ public class MyBinaryTreeNode<T> {
 	public T data;
 	public MyBinaryTreeNode<T> left, right;
 	//additional
-	public char tag;
+	//default value
+	public char tag = 'x';
 	
 	
 	public MyBinaryTreeNode(T data) {
@@ -140,7 +141,9 @@ public class MyBinaryTreeNode<T> {
 		if( node == null ) {
 			return "(NULL)";
 		}
-		return String.valueOf( node.data ) + "\\" + node.tag;
+		//DETAIL: if tag is not specified, it is 0, 
+		//return String.valueOf( node.data ) + "\\" + node.tag;
+		return String.valueOf( node.data ) + "|" + node.tag;
 	}
 	
 	

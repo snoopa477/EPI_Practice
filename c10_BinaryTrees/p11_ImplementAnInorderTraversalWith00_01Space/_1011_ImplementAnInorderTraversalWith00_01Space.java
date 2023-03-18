@@ -26,7 +26,7 @@ public class _1011_ImplementAnInorderTraversalWith00_01Space {
 			} 
 			else if (curr.left == prev) {
 				result.add(curr.data);
-// Done with left, so go right if right is not empty. Otherwise , go up.
+				// Done with left, so go right if right is not empty. Otherwise , go up.
 				next = (curr.right != null) ? curr.right : curr.parent;
 			} 
 			else { // Done with both children , so move up.

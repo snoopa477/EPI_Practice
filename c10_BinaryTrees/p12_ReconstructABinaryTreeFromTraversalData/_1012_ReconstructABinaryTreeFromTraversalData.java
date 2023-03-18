@@ -28,8 +28,12 @@ public class _1012_ReconstructABinaryTreeFromTraversalData {
 
 // Builds the subtree with preorder . subList(preorderStart , preorderEnd) and
 // inorder.subList(inorderStart, inorderEnd).
-	private static BinaryTreeNode<Integer> binaryTreeFromPreorderInorderHelper(List<Integer> preorder,
-			int preorderStart, int preorderEnd, int inorderStart, int inorderEnd,
+	private static BinaryTreeNode<Integer> binaryTreeFromPreorderInorderHelper(
+			List<Integer> preorder,
+			int preorderStart, 
+			int preorderEnd, 
+			int inorderStart, 
+			int inorderEnd,
 			Map<Integer, Integer> nodeToInorderldx) {
 		if (preorderEnd <= preorderStart || inorderEnd <= inorderStart) {
 			return null;
@@ -37,12 +41,22 @@ public class _1012_ReconstructABinaryTreeFromTraversalData {
 		int rootlnorderldx = nodeToInorderldx.get(preorder.get(preorderStart));
 		int leftSubtreeSize = rootlnorderldx - inorderStart;
 		return new BinaryTreeNode<Integer>(preorder.get(preorderStart),
-// Recursively builds the left subtree.
-				binaryTreeFromPreorderInorderHelper(preorder, preorderStart + 1, preorderStart + 1 + leftSubtreeSize,
-						inorderStart, rootlnorderldx, nodeToInorderldx),
+				// Recursively builds the left subtree.
+				binaryTreeFromPreorderInorderHelper(
+						preorder, 
+						preorderStart + 1, 
+						preorderStart + 1 + leftSubtreeSize,
+						inorderStart, 
+						rootlnorderldx, 
+						nodeToInorderldx),
 // Recursively builds the right subtree.
-				binaryTreeFromPreorderInorderHelper(preorder, preorderStart + 1 + leftSubtreeSize, preorderEnd,
-						rootlnorderldx + 1, inorderEnd, nodeToInorderldx));
+				binaryTreeFromPreorderInorderHelper(
+						preorder, 
+						preorderStart + 1 + leftSubtreeSize, 
+						preorderEnd,
+						rootlnorderldx + 1, 
+						inorderEnd, 
+						nodeToInorderldx));
 
 	}
 }
