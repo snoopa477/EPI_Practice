@@ -237,6 +237,38 @@ public class MyBinaryTreeNodeWithNext<T> {
 		
 		return nodeA;
 	}
+	
+	
+	/**
+	 * 
+	 * @return complete binary tree
+	 */
+	public static MyBinaryTreeNodeWithNext<Integer> makeFigure10_06Tree(){
+		
+		
+		MyBinaryTreeNodeWithNext<Integer> nodeD = new MyBinaryTreeNodeWithNext<>(1, 'D');
+		MyBinaryTreeNodeWithNext<Integer> nodeE = new MyBinaryTreeNodeWithNext<>(1, 'E');
+		MyBinaryTreeNodeWithNext<Integer> nodeG = new MyBinaryTreeNodeWithNext<>(1, 'G');
+		MyBinaryTreeNodeWithNext<Integer> nodeH = new MyBinaryTreeNodeWithNext<>(1, 'H');
+		MyBinaryTreeNodeWithNext<Integer> nodeK = new MyBinaryTreeNodeWithNext<>(1, 'K');
+		MyBinaryTreeNodeWithNext<Integer> nodeL = new MyBinaryTreeNodeWithNext<>(1, 'L');
+		MyBinaryTreeNodeWithNext<Integer> nodeN = new MyBinaryTreeNodeWithNext<>(1, 'N');
+		MyBinaryTreeNodeWithNext<Integer> nodeO = new MyBinaryTreeNodeWithNext<>(1, 'O');
+		
+		
+		MyBinaryTreeNodeWithNext<Integer> nodeC = new MyBinaryTreeNodeWithNext<>(1, 'C', nodeD, nodeE);
+		MyBinaryTreeNodeWithNext<Integer> nodeF = new MyBinaryTreeNodeWithNext<>(1, 'F', nodeG, nodeH);
+		MyBinaryTreeNodeWithNext<Integer> nodeJ = new MyBinaryTreeNodeWithNext<>(1, 'J', nodeK, nodeL);
+		MyBinaryTreeNodeWithNext<Integer> nodeM = new MyBinaryTreeNodeWithNext<>(1, 'M', nodeN, nodeO);
+		
+		MyBinaryTreeNodeWithNext<Integer> nodeB = new MyBinaryTreeNodeWithNext<>(1, 'B', nodeC, nodeF);
+		MyBinaryTreeNodeWithNext<Integer> nodeI = new MyBinaryTreeNodeWithNext<>(1, 'I', nodeJ, nodeM);
+		
+		MyBinaryTreeNodeWithNext<Integer> nodeA = new MyBinaryTreeNodeWithNext<>(1, 'A', nodeB, nodeI);
+		
+		
+		return nodeA;
+	}
 }
 
 
