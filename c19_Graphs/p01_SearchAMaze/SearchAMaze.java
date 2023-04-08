@@ -128,7 +128,10 @@ public class SearchAMaze {
 			return false;
 		}
 		
-		if( maze.get( row ).get( col ) != MyColor.WHITE && maze.get( row ).get( col ) != MyColor.START  && maze.get( row ).get( col ) != MyColor.END) {
+		
+		//if( maze.get( row ).get( col ) != MyColor.WHITE && maze.get( row ).get( col ) != MyColor.START  && maze.get( row ).get( col ) != MyColor.END) {
+		MyColor coordColor = maze.get( row ).get( col );
+		if( coordColor != MyColor.WHITE && coordColor != MyColor.START  && coordColor != MyColor.END) {
 			return false;
 		}
 		
