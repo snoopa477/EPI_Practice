@@ -41,6 +41,25 @@ public enum MyColor {
 	
 	
 	
+	public static List<List<MyColor>> makeMap_quasai_19_05(){
+		
+		List<List<MyColor>> map = new ArrayList<>();
+		map.add( new ArrayList<>(  makeRow( 1, 0, 0, 0, 0, 0, 1, 1, 0 ,0)  )  );
+		map.add( new ArrayList<>(  makeRow( 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)  )  );
+		map.add( new ArrayList<>(  makeRow( 1, 0, 1, 0, 0, 1, 1, 0, 1, 1)  )  );
+		map.add( new ArrayList<>(  makeRow( 0, 0, 0, 1, 1, 1, 0, 0, 1, 0)  )  );
+		map.add( new ArrayList<>(  makeRow( 0, 1, 1, 0, 1, 1, 0, 0, 0, 0)  )  );
+		map.add( new ArrayList<>(  makeRow( 0, 1, 1, 0, 0, 1, 1, 1, 1, 0)  )  );
+		map.add( new ArrayList<>(  makeRow( 1, 0, 0, 0, 1, 0, 1, 0, 0, 0)  )  );
+		map.add( new ArrayList<>(  makeRow( 1, 0, 1, 0, 1, 0, 1, 0, 0, 0)  )  );
+		map.add( new ArrayList<>(  makeRow( 1, 0, 1, 1, 0, 0, 0, 1, 1, 1)  )  );
+		map.add( new ArrayList<>(  makeRow( 0, 1, 0, 0, 0, 0, 0, 1, 1, 0)  )  );
+		
+		return map;
+	}
+	
+	
+	
 	private static List<MyColor> makeRow( MyColor... myColors ){
 		return Arrays.asList( myColors );
 	}
