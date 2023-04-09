@@ -60,6 +60,25 @@ public enum MyColor {
 	
 	
 	
+	public static List<List<MyColor>> makeMap_quasai_19_05_02(){
+		
+		List<List<MyColor>> map = new ArrayList<>();
+		map.add( new ArrayList<>(  makeRow( 1, 0, 0, 0, 0, 0, 1, 1, 0 ,0)  )  );
+		map.add( new ArrayList<>(  makeRow( 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)  )  );
+		map.add( new ArrayList<>(  makeRow( 1, 0, 1, 0, 0, 1, 1, 0, 1, 1)  )  );
+		map.add( new ArrayList<>(  makeRow( 0, 1, 0, 1, 1, 1, 0, 0, 1, 0)  )  );
+		map.add( new ArrayList<>(  makeRow( 0, 1, 1, 0, 1, 1, 0, 1, 0, 0)  )  );
+		map.add( new ArrayList<>(  makeRow( 0, 1, 1, 0, 0, 1, 1, 1, 1, 0)  )  );
+		map.add( new ArrayList<>(  makeRow( 1, 0, 0, 0, 1, 0, 1, 0, 0, 0)  )  );
+		map.add( new ArrayList<>(  makeRow( 1, 0, 1, 0, 1, 0, 1, 0, 0, 0)  )  );
+		map.add( new ArrayList<>(  makeRow( 1, 0, 1, 1, 0, 1, 0, 1, 1, 1)  )  );
+		map.add( new ArrayList<>(  makeRow( 0, 1, 0, 0, 0, 0, 0, 1, 1, 0)  )  );
+		
+		return map;
+	}
+	
+	
+	
 	private static List<MyColor> makeRow( MyColor... myColors ){
 		return Arrays.asList( myColors );
 	}
@@ -97,6 +116,26 @@ public enum MyColor {
 			StringJoiner sj = new StringJoiner("");
 			for( MyColor elt: row ) {
 				sj.add( elt.symbol );
+			}
+			out.println(sj.toString());
+			//out.println();
+		}
+		
+	}
+	
+	
+	
+	public static<T> void printGenericMap( List<List<T>> map ) {
+		
+		//WRONG; forget to add: nullPointerExceptoin
+		if( map == null ) {
+			return ;
+		}
+		
+		for( List<T> row : map ) {
+			StringJoiner sj = new StringJoiner(" ");
+			for( T elt: row ) {
+				sj.add( elt.toString() );
 			}
 			out.println(sj.toString());
 			//out.println();
