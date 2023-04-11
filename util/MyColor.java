@@ -9,6 +9,7 @@ import java.util.StringJoiner;
 public enum MyColor {
 	
 	WHITE("[ ]")
+	, GREY("[G]")
 	, BLACK("[X]")
 	, VISITED("[.]")
 	, START("[S]")
