@@ -55,11 +55,21 @@ public class MyGraphVertex {
 
 	public static void main(String[] args) {
 		
+		out.println("-----------graph01");
 		List<MyGraphVertex> graph01 = getGraph01();
 		printGraph( graph01 );
 		
+		out.println("-----------graph02");
 		List<MyGraphVertex> graph02 = getGraph02();
 		printGraph( graph02 );
+		
+		out.println("-----------graph03");
+		List<MyGraphVertex> graph03 = getGraph03();
+		printGraph( graph03 );
+		
+		out.println("-----------graph04");
+		List<MyGraphVertex> graph04 = getGraph04();
+		printGraph( graph04 );
 		
 		
 		out.println("end");
@@ -120,8 +130,14 @@ public class MyGraphVertex {
 	
 	public static List<MyGraphVertex> getGraph03(){
 		
-		return null;
+		HashMap<String, MyGraphVertex> vs = getVertices("P", "Q", "R", "S", "T", "U", "V");
 		
+		setNeighbors(vs.get("P"), vs.get("Q"), vs.get("R"), vs.get("S") );
+		setNeighbors(vs.get("R"), vs.get("V") );
+		setNeighbors(vs.get("S"), vs.get("V") );
+		setNeighbors(vs.get("V"), vs.get("T"), vs.get("U") );
+		
+		return new ArrayList<>( vs.values() );
 	}
 	
 	
@@ -129,7 +145,15 @@ public class MyGraphVertex {
 	//with cycle
 	public static List<MyGraphVertex> getGraph04(){
 		
-		return null;
+		HashMap<String, MyGraphVertex> vs = getVertices("P", "Q", "R", "S", "T", "U", "V");
+		
+		setNeighbors(vs.get("P"), vs.get("Q"), vs.get("R"), vs.get("S") );
+		setNeighbors(vs.get("R"), vs.get("V") );
+		setNeighbors(vs.get("S"), vs.get("V") );
+		setNeighbors(vs.get("V"), vs.get("T"), vs.get("U") );
+		setNeighbors(vs.get("U"), vs.get("S") );
+		
+		return new ArrayList<>( vs.values() );
 		
 	}
 	

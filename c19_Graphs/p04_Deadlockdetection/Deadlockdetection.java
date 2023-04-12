@@ -79,6 +79,8 @@ public class Deadlockdetection {
 		}
 		
 		//the moment this vertex done exploring, mark as black
+		//WRONG if I forget to add this line, this vertex would keep grey until other vertex meets it -> has cycle
+		vertex.color = MyColor.BLACK;
 		
 		return false;
 	}
