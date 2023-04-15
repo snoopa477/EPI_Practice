@@ -26,24 +26,29 @@ public class _1905_CloneAGraph {
 		}
 	}
 
+	
+	
 	public static GraphVertex cloneGraph(GraphVertex g) {
+		
 		if (g == null) {
 			return null;
 		}
+		
 		Map<GraphVertex, GraphVertex> vertexMap = new HashMap<>();
 		Queue<GraphVertex> q = new LinkedList<>();
 		q.add(g);
 		vertexMap.put(g, new GraphVertex(g.label));
+		
 		while (!q.isEmpty()) {
 			GraphVertex v = q.remove();
 
 			for (GraphVertex e : v.edges) {
-// Try to copy vertex e.
+				// Try to copy vertex e.
 				if (!vertexMap.containsKey(e)) {
 					vertexMap.put(e, new GraphVertex(e.label));
 					q.add(e);
 				}
-// Copy edge .
+				// Copy edge .
 				vertexMap.get(v).edges.add(vertexMap.get(e));
 			}
 

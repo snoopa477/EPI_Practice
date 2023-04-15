@@ -10,7 +10,7 @@ public class Test_Deadlockdetection {
 		
 		{
 			out.println("-----------graph01");
-			List<MyGraphVertex> graph01 = MyGraphVertex.getGraph01();
+			List<MyGraphVertex> graph01 = MyGraphVertex.convertToList( MyGraphVertex.getGraph01() );
 			MyGraphVertex.printGraph( graph01 );
 			
 			out.println("has cycle? " + Deadlockdetection.isDeadLocked( graph01 ) );
@@ -21,7 +21,7 @@ public class Test_Deadlockdetection {
 		
 		{
 			out.println("-----------graph02");
-			List<MyGraphVertex> graph02 = MyGraphVertex.getGraph02();
+			List<MyGraphVertex> graph02 = MyGraphVertex.convertToList( MyGraphVertex.getGraph02() );
 			MyGraphVertex.printGraph( graph02 );
 			
 			out.println("has cycle? " + Deadlockdetection.isDeadLocked( graph02 ) );
@@ -30,7 +30,7 @@ public class Test_Deadlockdetection {
 		
 		{
 			out.println("-----------graph03");
-			List<MyGraphVertex> graph03 = MyGraphVertex.getGraph03();
+			List<MyGraphVertex> graph03 = MyGraphVertex.convertToList( MyGraphVertex.getGraph03() );
 			MyGraphVertex.printGraph( graph03 );
 			
 			out.println("has cycle? " + Deadlockdetection.isDeadLocked( graph03 ) );
@@ -39,7 +39,7 @@ public class Test_Deadlockdetection {
 		
 		{
 			out.println("-----------graph04");
-			List<MyGraphVertex> graph04 = MyGraphVertex.getGraph04();
+			List<MyGraphVertex> graph04 = MyGraphVertex.convertToList( MyGraphVertex.getGraph04() );
 			MyGraphVertex.printGraph( graph04 );
 			
 			out.println("has cycle? " + Deadlockdetection.isDeadLocked( graph04 ) );
