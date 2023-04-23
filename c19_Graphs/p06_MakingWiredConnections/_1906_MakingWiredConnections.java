@@ -21,6 +21,8 @@ public class _1906_MakingWiredConnections {
 		public List<GraphVertex> edges = new ArrayList<>();
 	}
 
+	
+	
 	public static boolean isAnyPlacementFeasible(List<GraphVertex> G) {
 		for (GraphVertex v : G) {
 			if (v.d == -1) {// Unvisited vertex.
@@ -33,6 +35,8 @@ public class _1906_MakingWiredConnections {
 		return true;
 	}
 
+	
+	
 	private static boolean BFS(GraphVertex s) {
 		Queue<GraphVertex> q = new LinkedList<>();
 		q.add(s);
@@ -49,4 +53,6 @@ public class _1906_MakingWiredConnections {
 		}
 		return true;
 	}
+	
+	
 }
