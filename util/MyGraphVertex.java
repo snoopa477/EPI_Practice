@@ -3,6 +3,7 @@ import static java.lang.System.out;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Deque;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -135,6 +136,22 @@ public class MyGraphVertex {
 	
 	
 	
+	public static List<MyGraphVertexWithValue> convertToList2( HashMap<String, MyGraphVertex> graph ){
+		
+		ArrayList<MyGraphVertexWithValue > list = new ArrayList<>();
+		
+		for( MyGraphVertex vertex: graph.values() ) {
+			if( vertex instanceof MyGraphVertexWithValue ) {
+				list.add( (MyGraphVertexWithValue) vertex );
+			}
+			
+		}
+		
+		return list;
+	}
+	
+	
+	
 	//marking visit or not without using color is to use HashMap/ HashSet. Reference. 19.05
 	public static void printGraphBFS( MyGraphVertex graph ) {
 		
@@ -159,6 +176,38 @@ public class MyGraphVertex {
 		}
 	}
 	
+	
+	
+	public static void printGraphBFS( List<MyGraphVertex> graph ) {
+		
+		//DETAIL: I use this because I don't wanna tamper with vertext color, which will be used later on
+		HashSet<MyGraphVertex> visitedVs = new HashSet<>();
+		Deque<MyGraphVertex> queueBFS = new LinkedList<>();
+		
+		for( MyGraphVertex vertex : graph ) {
+			
+			if( visitedVs.contains(vertex) == false) {
+				queueBFS.add( vertex );
+				
+				while( queueBFS.size() > 0 ) {
+					
+					MyGraphVertex currentVertex = queueBFS.poll();
+					visitedVs.add( currentVertex );
+					out.println( currentVertex );
+					
+					for( MyGraphVertex neighbor : currentVertex.neighbors ) {
+						
+						if( visitedVs.contains(neighbor) == false) {
+							//wrong: don't forget to add
+							visitedVs.add( neighbor );
+							queueBFS.add( neighbor );
+						}
+					}
+				}
+			}
+		}
+		
+	}
 	
 	
 	public static void printGraphDFS( MyGraphVertex graph ) {

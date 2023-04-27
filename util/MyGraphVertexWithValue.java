@@ -77,6 +77,13 @@ public class MyGraphVertexWithValue extends MyGraphVertex {
 		printGraphDFS ( graph19_08.get("A") );
 		
 		
+		out.println("\n++++++++++++++++++++++++++++++++++++++test printGraphDFS  getGraph_problem19_08() ");
+		out.println( "printGraphDFS ( getGraph19_08().get(\"A\") )" );
+		HashMap<String, MyGraphVertex> graph_problem19_08 = getGraph_problem19_08();
+		setValueBFS( graph_problem19_08, 1 );
+		printGraphBFS ( convertToList (graph_problem19_08) );
+		
+		
 		
 		out.println("end");
 		
@@ -322,6 +329,21 @@ public class MyGraphVertexWithValue extends MyGraphVertex {
 		}
 		
 		return list;
+	}
+	
+	
+	
+	public static HashMap<String, MyGraphVertex> getGraph_problem19_08(){
+		
+		HashMap<String, MyGraphVertex> vs = getVertices( "1", "2", "3", "4", "5", "6" );
+		
+		setNeighbors(vs.get("1"), vs.get("2"), vs.get("4") );
+		setNeighbors(vs.get("2"), vs.get("3") );
+		
+		setNeighbors(vs.get("4"), vs.get("2"), vs.get("5"), vs.get("6") );
+		setNeighbors(vs.get("5"), vs.get("6") );
+		
+		return vs;
 	}
 	
 	

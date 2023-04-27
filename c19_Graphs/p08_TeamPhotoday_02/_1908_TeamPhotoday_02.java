@@ -22,11 +22,15 @@ public class _1908_TeamPhotoday_02 {
 		public boolean visited = false;
 	}
 
+	
+	
 	public static int findLargestNumberTeams(List<GraphVertex> G) {
 		Deque<GraphVertex> orderedVertices = buildTopologicalOrdering(G);
 		return findLongestPath(orderedVertices);
 	}
 
+	
+	
 	private static Deque<GraphVertex> buildTopologicalOrdering(List<GraphVertex> G) {
 		Deque<GraphVertex> orderedVertices = new LinkedList<>();
 		for (GraphVertex g : G) {
@@ -37,6 +41,8 @@ public class _1908_TeamPhotoday_02 {
 		return orderedVertices;
 	}
 
+	
+	
 	private static int findLongestPath(Deque<GraphVertex> orderedVertices) {
 		int maxDistance = 0;
 		while (!orderedVertices.isEmpty()) {
@@ -50,6 +56,8 @@ public class _1908_TeamPhotoday_02 {
 		return maxDistance;
 	}
 
+	
+	
 	private static void DFS(GraphVertex cur, Deque<GraphVertex> orderedVertices) {
 		cur.visited = true;
 		for (GraphVertex next : cur.edges) {
