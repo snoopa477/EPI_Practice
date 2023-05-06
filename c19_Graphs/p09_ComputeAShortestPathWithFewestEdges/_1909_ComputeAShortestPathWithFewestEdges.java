@@ -27,6 +27,8 @@ public class _1909_ComputeAShortestPathWithFewestEdges {
 		}
 	}
 
+	
+	
 	private static class DistanceWithFewestEdges {
 		public Integer distance;
 		public Integer minNumEdges;
@@ -37,12 +39,17 @@ public class _1909_ComputeAShortestPathWithFewestEdges {
 		}
 	}
 
+	
+	
 	public static class GraphVertex implements Comparable<GraphVertex> {
+		
 		public DistanceWithFewestEdges distanceWithFewestEdges = new DistanceWithFewestEdges(Integer.MAX_VALUE, 0);
 		public List<VertexWithDistance> edges = new ArrayList<>();
 		public int id; // The id of this vertex.
 		public GraphVertex pred = null; // The predecessor in the shortest path.
 
+		
+		
 		@Override
 		public int compareTo(GraphVertex o) {
 			if (distanceWithFewestEdges.distance != o.distanceWithFewestEdges.distance) {
@@ -54,6 +61,8 @@ public class _1909_ComputeAShortestPathWithFewestEdges {
 			return Integer.compare(id, o.id);
 		}
 
+		
+		
 		@Override
 		public boolean equals(Object obj) {
 			if (obj == null || !(obj instanceof GraphVertex)) {
@@ -68,6 +77,8 @@ public class _1909_ComputeAShortestPathWithFewestEdges {
 
 		}
 
+		
+		
 		@Override
 		public int hashCode() {
 			return Objects.hash(distanceWithFewestEdges.distance, distanceWithFewestEdges.minNumEdges);
@@ -75,19 +86,21 @@ public class _1909_ComputeAShortestPathWithFewestEdges {
 
 	}
 
+	
+	
 	public static void dijkstraShortestPath(GraphVertex s, GraphVertex t) {
-// Initialization of the distance of starting point.
+		// Initialization of the distance of starting point.
 		s.distanceWithFewestEdges = new DistanceWithFewestEdges(0, 0);
 		SortedSet<GraphVertex> nodeSet = new TreeSet<>();
 		nodeSet.add(s);
 		while (!nodeSet.isEmpty()) {
-// Extracts the minimum distance vertex from heap.
+			// Extracts the minimum distance vertex from heap.
 			GraphVertex u = nodeSet.first();
 			if (u.equals(t)) {
 				break;
 			}
 			nodeSet.remove(nodeSet.first());
-// Relax neighboring vertices of u.
+			// Relax neighboring vertices of u.
 			for (VertexWithDistance v : u.edges) {
 				int vDistance = u.distanceWithFewestEdges.distance + v.distance;
 				int vNumEdges = u.distanceWithFewestEdges.minNumEdges + 1;
@@ -102,10 +115,12 @@ public class _1909_ComputeAShortestPathWithFewestEdges {
 			}
 		}
 
-// Outputs the shortest path with fewest edges.
+		// Outputs the shortest path with fewest edges.
 		outputShortestPath(t);
 	}
 
+	
+	
 	private static void outputShortestPath(GraphVertex v) {
 		if (v != null) {
 			outputShortestPath(v.pred);
