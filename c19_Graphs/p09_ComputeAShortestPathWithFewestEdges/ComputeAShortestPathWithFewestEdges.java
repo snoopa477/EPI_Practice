@@ -2,9 +2,12 @@ package c19_Graphs.p09_ComputeAShortestPathWithFewestEdges;
 import static java.lang.System.out;
 
 import java.util.SortedSet;
+import java.util.StringJoiner;
 import java.util.TreeSet;
 
 public class ComputeAShortestPathWithFewestEdges {
+	
+	public static boolean IS_DEBUG = false;
 
 	public static void dijkstraShortestPath( MyGraphVertexWithEdgeValue sourceVertex, MyGraphVertexWithEdgeValue targetVertex ) {
 		
@@ -43,6 +46,8 @@ public class ComputeAShortestPathWithFewestEdges {
 			if( currentVertex.equals( targetVertex ) ) {
 				break;
 			}
+			
+			if( IS_DEBUG ) { out.println( currentVertex ); }
 			
 			//processed, now remove it from the to-do list, the min-heap
 			sortedVertexSets.remove( currentVertex );
@@ -88,6 +93,21 @@ public class ComputeAShortestPathWithFewestEdges {
 	
 	
 	private static void printOutput( MyGraphVertexWithEdgeValue vertex ) {
+		
+		MyGraphVertexWithEdgeValue currentVertx = vertex;
+		StringJoiner sj = new StringJoiner(", ");
+		
+		while( currentVertx.pred != null ) {
+			sj.add( currentVertx.tag );
+			//WRONG if I forget this line
+			currentVertx = currentVertx.pred;
+		}
+		
+		//WRONG if I forget this line
+		//reaching here meaning currentVertex is root
+		sj.add( currentVertx.tag );
+		
+		out.println( sj.toString() );
 		
 	}
 	
