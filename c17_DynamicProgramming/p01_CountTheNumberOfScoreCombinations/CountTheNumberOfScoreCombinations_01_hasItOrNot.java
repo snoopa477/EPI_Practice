@@ -4,6 +4,8 @@ import static java.lang.System.out;
 import java.util.List;
 public class CountTheNumberOfScoreCombinations_01_hasItOrNot {
 	
+	public static boolean IS_DEBUG = false;
+	
 	public static int numCombinationsForFinalScore(int finalScore, List<Integer> individualScores) {
 		
 		/* 
@@ -66,7 +68,9 @@ public class CountTheNumberOfScoreCombinations_01_hasItOrNot {
 				
 				//step 1
 				int oldScoreType_Idx = i - 1;
-				boolean isOldScoreTypeExist  = oldScoreType_Idx > 0 ;
+				//WRONG: when idex = 0, they exist
+				//boolean isOldScoreTypeExist  = oldScoreType_Idx > 0 ;
+				boolean isOldScoreTypeExist  = oldScoreType_Idx >= 0 ;
 				
 				int numComb_without_NewIndivialScore = isOldScoreTypeExist ? 
 					numCombToGetScore[ oldScoreType_Idx ][j]
@@ -88,6 +92,17 @@ public class CountTheNumberOfScoreCombinations_01_hasItOrNot {
 				numCombToGetScore[i][j] = numComb_without_NewIndivialScore + numComb_with_NewIndivialScore;
 				
 			}
+		}
+		
+		if( IS_DEBUG ) {
+			
+			for( int i = 0; i < numCombToGetScore.length ; i++ ) {
+				out.println("\ni: " + i );
+				for( int j = 0; j < numCombToGetScore[0].length; j++ ) {
+					out.print( "; j: " + j + ", val: " + numCombToGetScore[i][j] );
+				}
+			}
+			out.println();
 		}
 		
 		
