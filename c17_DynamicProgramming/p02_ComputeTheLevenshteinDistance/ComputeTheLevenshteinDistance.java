@@ -3,7 +3,9 @@ import static java.lang.System.out;
 
 import java.util.Arrays;
 public class ComputeTheLevenshteinDistance {
-
+	
+	public static boolean IS_DEBUG = false;
+	
 	private static int NONVISITED = -1;
 	
 	public static int levenshteinDistance(String A, String B) {
@@ -70,7 +72,8 @@ public class ComputeTheLevenshteinDistance {
 		}
 		
 		//if non visited, then compute, storing to cache; otherwise get the cache
-		if( LDistance[ A_lastInclusiveIdx ][ B_lastInclusiveIdx ] != NONVISITED ) {
+		//if( LDistance[ A_lastInclusiveIdx ][ B_lastInclusiveIdx ] != NONVISITED ) {
+		if( LDistance[ A_lastInclusiveIdx ][ B_lastInclusiveIdx ] == NONVISITED ) {
 			
 			if( isLastCharTheSame( A, A_lastInclusiveIdx, B, B_lastInclusiveIdx ) ) {
 				
@@ -85,7 +88,8 @@ public class ComputeTheLevenshteinDistance {
 				 * 
 				 * last character x to x requires 0 operations
 				 */
-				LDistance[ A_lastInclusiveIdx ][ B_lastInclusiveIdx ] = LDistance[ A_lastInclusiveIdx -1 ][ B_lastInclusiveIdx -1 ] + 0 /*x to x: NONE*/;
+				//LDistance[ A_lastInclusiveIdx ][ B_lastInclusiveIdx ] = LDistance[ A_lastInclusiveIdx -1 ][ B_lastInclusiveIdx -1 ] + 0 /*x to x: NONE*/;
+				LDistance[ A_lastInclusiveIdx ][ B_lastInclusiveIdx ] = getLevenshteinDistance( LDistance, A, A_lastInclusiveIdx -1, B, B_lastInclusiveIdx -1 ) + 0 /*x to x: NONE*/;
 				
 			}
 			//answer lies within three of them\
@@ -107,7 +111,8 @@ public class ComputeTheLevenshteinDistance {
 				 * 
 				 * last character NULL to y require one insertion
 				 */
-				int insertToLast = LDistance[ A_lastInclusiveIdx ][ B_lastInclusiveIdx -1 ] + 1 /*NULL to y: insert*/;
+				//int insertToLast = LDistance[ A_lastInclusiveIdx ][ B_lastInclusiveIdx -1 ] + 1 /*NULL to y: insert*/;
+				int insertToLast = getLevenshteinDistance( LDistance, A, A_lastInclusiveIdx, B, B_lastInclusiveIdx -1 ) + 1 /*NULL to y: insert*/;
 				
 				/**
 				 * example: 
@@ -120,7 +125,8 @@ public class ComputeTheLevenshteinDistance {
 				 * 
 				 * last character x to NULL require one deletion
 				 */
-				int deleteToLast = LDistance[ A_lastInclusiveIdx -1 ][ B_lastInclusiveIdx ] + 1 /*x to NULL: deletion*/;
+				//int deleteToLast = LDistance[ A_lastInclusiveIdx -1 ][ B_lastInclusiveIdx ] + 1 /*x to NULL: deletion*/;
+				int deleteToLast = getLevenshteinDistance( LDistance, A, A_lastInclusiveIdx -1 , B, B_lastInclusiveIdx ) + 1 /*x to NULL: deletion*/;
 				
 				/**
 				 * example: 
@@ -133,7 +139,8 @@ public class ComputeTheLevenshteinDistance {
 				 * 
 				 * last character x to y needs one replace
 				 */
-				int replaceLast = LDistance[ A_lastInclusiveIdx -1 ][ B_lastInclusiveIdx -1 ] + 1 /*x to y: replace*/;
+				//int replaceLast = LDistance[ A_lastInclusiveIdx -1 ][ B_lastInclusiveIdx -1 ] + 1 /*x to y: replace*/;
+				int replaceLast = getLevenshteinDistance( LDistance, A, A_lastInclusiveIdx -1 , B, B_lastInclusiveIdx - 1 ) + 1 /*x to y: replace*/;
 				
 				int minValue = Math.min(insertToLast, Math.min( deleteToLast, replaceLast ));
 				LDistance[ A_lastInclusiveIdx ][ B_lastInclusiveIdx ] = minValue;
@@ -141,8 +148,9 @@ public class ComputeTheLevenshteinDistance {
 			
 		}
 		
-		//reaching here meaning the value is either computed or just get from previous result
 		
+		
+		//reaching here meaning the value is either computed or just get from previous result
 		return LDistance[ A_lastInclusiveIdx ][ B_lastInclusiveIdx ];
 	}
 	
