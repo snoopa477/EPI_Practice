@@ -9,7 +9,7 @@ public class CountTheNumberOfWaysToTraverseA02dArray_01_ForLoop {
 	
 	public static int numberOfWays(int n, int m) {
 		
-		int[][] numberOfWays = new int[ n + 1 ][ m + 1 ];
+		int[][] numberOfWays = new int[ n ][ m ];
 		
 		/* 
 		 * we go assigning from smallest to largest. 
@@ -38,7 +38,7 @@ public class CountTheNumberOfWaysToTraverseA02dArray_01_ForLoop {
 		}
 		
 		
-		return numberOfWays[n][m];
+		return numberOfWays[ n -1 ][ m -1 ];
 	}
 	
 

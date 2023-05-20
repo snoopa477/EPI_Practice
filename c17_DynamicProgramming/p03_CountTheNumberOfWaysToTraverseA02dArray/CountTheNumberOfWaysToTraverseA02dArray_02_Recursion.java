@@ -17,14 +17,14 @@ public class CountTheNumberOfWaysToTraverseA02dArray_02_Recursion {
 	 */
 	public static int numberOfWays(int n, int m) {
 		
-		int[][] numberOfWays = new int[ n + 1 ][ m + 1 ];
+		int[][] numberOfWays = new int[ n ][ m ];
 		
 		/*initialization: since value ranges >= 1, 0 is out of range, meaning it is not visited(computed) yet. 
 		 * And the default value is already 0 => do nothing
 		 */
 		
 		
-		return numberOfWays( numberOfWays,  n, m );
+		return numberOfWays( numberOfWays,  n -1, m -1 );
 	}
 	
 	
@@ -40,7 +40,8 @@ public class CountTheNumberOfWaysToTraverseA02dArray_02_Recursion {
 		//REASONING: since value ranges >= 1, 0 is out of range, meaning it is not visited(computed) yet. If so, compute first
 		//PURPOSE: if unvisited then compute it first.
 		if( numberOfWays[i][j] == 0 ) {
-			numberOfWays[i][j] = numberOfWays[i + UP][j] + numberOfWays[i][j + LEFT];
+			//numberOfWays[i][j] = numberOfWays[i + UP][j] + numberOfWays[i][j + LEFT];
+			numberOfWays[i][j] = numberOfWays( numberOfWays, i + UP, j ) + numberOfWays( numberOfWays, i, j + LEFT );
 		}
 		
 		
