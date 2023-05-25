@@ -43,8 +43,8 @@ public class _1705_SearchForASequenceInA02dArray {
 			return false;
 		}
 
-		if (grid.get(x).get(y).equals(pattern.get(offset)) && (isPatternSuffixContainedStartingAtXY(grid, x - 1, y,
-				pattern, offset + 1, previousAttempts)
+		if (grid.get(x).get(y).equals(pattern.get(offset)) && 
+				  (isPatternSuffixContainedStartingAtXY(grid, x - 1, y,pattern, offset + 1, previousAttempts)
 				|| isPatternSuffixContainedStartingAtXY(grid, x + 1, y, pattern, offset + 1, previousAttempts)
 				|| isPatternSuffixContainedStartingAtXY(grid, x, y - 1, pattern, offset + 1, previousAttempts)
 				|| isPatternSuffixContainedStartingAtXY(grid, x, y + 1, pattern, offset + 1, previousAttempts))) {
