@@ -15,7 +15,9 @@ import java.util.Set;
 
 public class _1706_TheKnapsackProblem {
 
+	
 	private static class Item {
+		
 		public Integer weight;
 		public Integer value;
 
@@ -27,23 +29,31 @@ public class _1706_TheKnapsackProblem {
 
 	}
 
+	
+	
 	public static int optimumSubjectToCapacity(List<Item> items, int capacity) {
-// V[i][j] holds the optimum value when we choose from items[0 : i] and have
-// a capacity of j.
+		// V[i][j] holds the optimum value when we choose from items[0 : i] and have
+		// a capacity of j.
 		int[][] V = new int[items.size()][capacity + 1];
 		for (int[] v : V) {
 			Arrays.fill(v, -1);
 		}
+		
 		return optimumSubjectToItemAndCapacity(items, items.size() - 1, capacity, V);
 	}
 
-// Returns the optimum value when we choose from items[0 : k] and have a
-// capacity of available_capacity.
+	
+	
+	// Returns the optimum value when we choose from items[0 : k] and have a
+	// capacity of available_capacity.
 	private static int optimumSubjectToItemAndCapacity(List<Item> items, int k, int availableCapacity, int[][] V) {
+		
 		if (k < 0) {
-// No items can be chosen.
+		// No items can be chosen.
 			return 0;
 		}
+		
+		
 		if (V[k][availableCapacity] == -1) {
 			int withoutCurrltem = optimumSubjectToItemAndCapacity(items, k - 1, availableCapacity, V);
 			int withCurrltem = availableCapacity < items.get(k).weight ? 0
@@ -51,6 +61,9 @@ public class _1706_TheKnapsackProblem {
 							+ optimumSubjectToItemAndCapacity(items, k - 1, availableCapacity - items.get(k).weight, V);
 			V[k][availableCapacity] = Math.max(withoutCurrltem, withCurrltem);
 		}
+		
 		return V[k][availableCapacity];
 	}
 }
+
+
