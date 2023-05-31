@@ -7,10 +7,19 @@ public class TheKnapsackProblem {
 	
 	private static int NONVISITED = -1;
 	
+	public static boolean IS_DEBUG = false;
+	
 	static class ValuableItem{
 		
 		public int weight;
 		public int price;
+		
+		
+		public ValuableItem(int weight, int price) {
+			super();
+			this.weight = weight;
+			this.price = price;
+		}
 		
 	}
 	
@@ -29,7 +38,7 @@ public class TheKnapsackProblem {
 		int[][] maxValuePick = new int[ valuableItems.size() ][ thiefCapacity + 1 ];
 		
 		for( int i = 0; i < maxValuePick.length; i++ ) {
-			Arrays.fill( maxValuePick, NONVISITED);
+			Arrays.fill( maxValuePick[i], NONVISITED);
 		}
 		
 		
@@ -40,6 +49,8 @@ public class TheKnapsackProblem {
 	
 	
 	private static int maximumValueOfPicking( int[][] maxValuePick, int currentWeight, List<ValuableItem> valuableItems, int indexOfItem ) {
+		
+		
 		
 		//no such item, then the maxValuePick is 0
 		//item weight > 0
@@ -66,7 +77,8 @@ public class TheKnapsackProblem {
 			//DETAIL: state 2 weight
 			int weightBeforePickingCurrentItem = currentWeight - currentItem.weight;
 			int maxValuePick_with_CurrentItem = weightBeforePickingCurrentItem >= 0 ?
-				maximumValueOfPicking( maxValuePick, currentWeight - currentItem.weight, valuableItems, indexOfItem )
+				/*pick the item, so the state 2 weight go to current weight */
+				maximumValueOfPicking( maxValuePick, currentWeight - currentItem.weight, valuableItems, indexOfItem ) + currentItem.price 
 				// non existent situation: weightBeforePickingCurrentItem < 0 => value 0
 				: 0;
 				
@@ -76,6 +88,10 @@ public class TheKnapsackProblem {
 				, maxValuePick_with_CurrentItem );
 		}
 		//reaching here meaning the value is filled
+		
+		if( IS_DEBUG ) {
+			out.println( "currentWeight: " + currentWeight + "; indexOfItem: " + indexOfItem + "; value is " + maxValuePick[ indexOfItem ][ currentWeight ] );
+		}
 		
 		return maxValuePick[ indexOfItem ][ currentWeight ];
 	}
