@@ -5,7 +5,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Stack;
 public class ComputeTheLargestRectangleUnderTheSkyline {
-
+	
+	public static boolean IS_DEBUG = false;
+	
 	private static int NON_EXISTENT = -1;
 	
 	public static int calculateLargestRectangle(List<Integer> heights) {
@@ -27,14 +29,15 @@ public class ComputeTheLargestRectangleUnderTheSkyline {
 		for( int right = 0; right < heights.size() + 1; right++ ) {
 		
 			int pivot_Height = getPivotHeight( sortedIdxs, heights );
-			int right_Height = heights.get( right );
+			int right_Height = getRightHeight( heights, right );
 
 			
-			//?
+			//Since pivotHeight is not greater than right height, cannot calculate area
+			//update index by moving right, without changing height
 			if( pivot_Height != NON_EXISTENT && pivot_Height == right_Height  ) {
 				sortedIdxs.pop();
 				sortedIdxs.add( right );
-				pivot_Height = getPivotHeight( sortedIdxs, heights );
+				continue;
 			}
 			
 			
@@ -52,15 +55,20 @@ public class ComputeTheLargestRectangleUnderTheSkyline {
 			 * 
 			 */
 			while( sortedIdxs.size() > 0 &&  
-				( pivot_Height > right_Height || right == heights.size() + 1 ) ) {
-				
+				//( pivot_Height > right_Height || right == heights.size() + 1 ) ) {
+					( pivot_Height > right_Height || right == heights.size() ) ) {
 				//now turn to the left pillar, which must be shorter than pivot pillar
 				sortedIdxs.pop();
-				int left = sortedIdxs.size() > 0 ? sortedIdxs.peek(): -1;
-				int width = right - left -1;
+				
+				int left = getLeft( sortedIdxs );
+				int width = right - left - 1;
 				
 				int currentArea = pivot_Height * width;
 				maxArea = Math.max(maxArea, currentArea );
+				
+				if( IS_DEBUG ) {
+					out.println("i: " + right + ", width: " + width + ", height:" + pivot_Height + " area: " + currentArea + ", left: " + left + ", right: " + right );
+				}
 				
 				pivot_Height = getPivotHeight( sortedIdxs, heights );
 			}
@@ -80,6 +88,18 @@ public class ComputeTheLargestRectangleUnderTheSkyline {
 		return sortedIdxs.size() > 0 ? heights.get( sortedIdxs.peek() ) : NON_EXISTENT;
 	}
 	
+	
+	
+	private static int getRightHeight( List<Integer> heights, int right ) {
+		//return heights.size() < right? heights.get( right ) : -1;
+		return  right < heights.size()? heights.get( right ) : -1;
+	}
+	
+	
+	
+	private static int getLeft( Stack<Integer> sortedIdxs ) {
+		return sortedIdxs.size() > 0 ? sortedIdxs.peek(): -1;
+	}
 	
 }
 

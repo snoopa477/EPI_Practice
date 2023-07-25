@@ -15,6 +15,8 @@ import java.util.PriorityQueue;
 import java.util.Set;
 
 public class _1808_ComputeTheLargestRectangleUnderTheSkyline {
+	
+	public static boolean IS_DEBUG = false;
 
 	public static int calculateLargestRectangle(List<Integer> heights) {
 		Deque<Integer> pillarIndices = new LinkedList<>();
@@ -37,6 +39,9 @@ public class _1808_ComputeTheLargestRectangleUnderTheSkyline {
 			while (!pillarIndices.isEmpty() && isNewPillarOrReachEnd(heights, i, pillarIndices.peekFirst())) {
 				int height = heights.get(pillarIndices.removeFirst());
 				int width = pillarIndices.isEmpty() ? i : i - pillarIndices.peekFirst() - 1;
+				if( IS_DEBUG ) {
+					out.println("i: " + i + ", width: " + width + ", height:" + height + ", area: " + (height * width) );
+				}
 				maxRectangleArea = Math.max(maxRectangleArea, height * width);
 			}
 			
