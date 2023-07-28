@@ -2,8 +2,11 @@ package c05_PrimitiveTypes.p01_ComputingTheParityOfAword;
 import static java.lang.System.out;
 public class ComputingTheParityOfAword_03_Precompute {
 	
+	public static boolean IS_DEBUG = false;
 	
-	private static int[] POWER_OF_TWO = {1, 2, 4, 8};
+	//WRONG
+	//private static int[] POWER_OF_TWO = {1, 2, 4, 8, 16};
+	private static int[] POWER_OF_TWO = {1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536};
 	private static int HEX_MASK = 0xFFFF;
 	private static int HEX = 16;
 	
@@ -14,7 +17,8 @@ public class ComputingTheParityOfAword_03_Precompute {
 		byte[]  bitToParity = precomputeBitToParity(  );
 		
 		//from left to right
-		 short parityOfPart1 = bitToParity[ (int)( x >>> ( HEX * 3 ) ) & HEX_MASK ]; 
+		 //short parityOfPart1 = bitToParity[ (int)( x >>> ( HEX * 3 ) ) & HEX_MASK ];
+		short parityOfPart1 = bitToParity[ (long)( x >>> ( HEX * 3 ) ) & HEX_MASK ];
 		 short parityOfPart2 = bitToParity[ (int)( x >>> ( HEX * 2 ) ) & HEX_MASK ]; 
 		 short parityOfPart3 = bitToParity[ (int)( x >>> ( HEX * 1 ) ) & HEX_MASK ];
 		 short parityOfPart4 = bitToParity[ (int)( x >>> ( HEX * 0 ) ) & HEX_MASK ];
@@ -58,14 +62,22 @@ public class ComputingTheParityOfAword_03_Precompute {
 		//DETAIL: i = 0 already has value, so skip it
 		for( int i = 1, idxCounterpart = 0; i < bitToPairty.length; i++, idxCounterpart++ ) {
 			
+			if( IS_DEBUG ) {
+				out.println( "i: " + i + ", idxCounterpart: " + idxCounterpart + ", idxPowerOf2: " + idxPowerOf2 );
+			}
+			
 			//REASONING: when it's power of 2, we can sure that it only one set bit( and it is at most significant place), which counterPart must be 000000
 			if( i ==  POWER_OF_TWO[ idxPowerOf2 ] ) {
 				idxCounterpart = 0;
 				idxPowerOf2++;
 			}
 			
-			//flip
+			//flip the counterpart to get the value
 			bitToPairty[ i ] =  (byte)( (int) bitToPairty[ idxCounterpart ] ^ 1) ;
+			
+			if( IS_DEBUG ) {
+				out.println( "i: " + i + ", bitToPairty[ i ]: " + bitToPairty[ i ] );
+			}
 		}
 		
 		
