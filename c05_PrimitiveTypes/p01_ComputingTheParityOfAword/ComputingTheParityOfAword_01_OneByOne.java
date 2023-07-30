@@ -34,7 +34,8 @@ public class ComputingTheParityOfAword_01_OneByOne {
 		 * therefore, the number keeps smaller by halved, until it becomes 0
 		 * 0 means no more potential 1 to process
 		 */
-		while( x > 0 ) {
+		//while( x > 0 ) {
+		while( x != 0 ) {
 			
 			//process
 			//DETAIL: use mask, a bunch of ones cooperating with AND operation, to get desired bit

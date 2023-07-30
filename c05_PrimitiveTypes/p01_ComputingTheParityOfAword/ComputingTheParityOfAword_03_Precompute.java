@@ -18,10 +18,23 @@ public class ComputingTheParityOfAword_03_Precompute {
 		
 		//from left to right
 		 //short parityOfPart1 = bitToParity[ (int)( x >>> ( HEX * 3 ) ) & HEX_MASK ];
-		short parityOfPart1 = bitToParity[ (long)( x >>> ( HEX * 3 ) ) & HEX_MASK ];
-		 short parityOfPart2 = bitToParity[ (int)( x >>> ( HEX * 2 ) ) & HEX_MASK ]; 
-		 short parityOfPart3 = bitToParity[ (int)( x >>> ( HEX * 1 ) ) & HEX_MASK ];
-		 short parityOfPart4 = bitToParity[ (int)( x >>> ( HEX * 0 ) ) & HEX_MASK ];
+		short parityOfPart1 = bitToParity[ (int)( x >>> ( HEX * 3 ) ) & HEX_MASK ];
+		short parityOfPart2 = bitToParity[ (int)( x >>> ( HEX * 2 ) ) & HEX_MASK ]; 
+		short parityOfPart3 = bitToParity[ (int)( x >>> ( HEX * 1 ) ) & HEX_MASK ];
+		short parityOfPart4 = bitToParity[ (int)( x >>> ( HEX * 0 ) ) & HEX_MASK ];
+		
+		if( IS_DEBUG ) {
+			
+			out.println( "(int)( x >>> ( HEX * 3 ) ) & HEX_MASK" );
+			out.println( (int)( x >>> ( HEX * 3 ) ) & HEX_MASK );
+			out.println( "(int)( x >>> ( HEX * 2 ) ) & HEX_MASK" );
+			out.println( (int)( x >>> ( HEX * 2 ) ) & HEX_MASK );
+			out.println( "(int)( x >>> ( HEX * 1 ) ) & HEX_MASK" );
+			out.println( (int)( x >>> ( HEX * 1 ) ) & HEX_MASK );
+			out.println( "(int)( x >>> ( HEX * 0 ) ) & HEX_MASK" );
+			out.println( (int)( x >>> ( HEX * 0 ) ) & HEX_MASK );
+			
+		}
 		
 		 return (short) ( parityOfPart1 ^ parityOfPart2 ^ parityOfPart3 ^ parityOfPart4 );
 	}
@@ -53,7 +66,7 @@ public class ComputingTheParityOfAword_03_Precompute {
 		 * 1 0000 16, cuz 16 =  2 to power of 4
 		 */
 		
-		byte[] bitToPairty = new byte[ HEX ];
+		byte[] bitToPairty = new byte[ 65536 ];
 		
 		//DETAIL: 0000 parity is 0
 		bitToPairty[ 0 ] = 0;
@@ -62,9 +75,7 @@ public class ComputingTheParityOfAword_03_Precompute {
 		//DETAIL: i = 0 already has value, so skip it
 		for( int i = 1, idxCounterpart = 0; i < bitToPairty.length; i++, idxCounterpart++ ) {
 			
-			if( IS_DEBUG ) {
-				out.println( "i: " + i + ", idxCounterpart: " + idxCounterpart + ", idxPowerOf2: " + idxPowerOf2 );
-			}
+			//if( IS_DEBUG ) { out.println( "i: " + i + ", idxCounterpart: " + idxCounterpart + ", idxPowerOf2: " + idxPowerOf2 ); }
 			
 			//REASONING: when it's power of 2, we can sure that it only one set bit( and it is at most significant place), which counterPart must be 000000
 			if( i ==  POWER_OF_TWO[ idxPowerOf2 ] ) {
@@ -75,9 +86,8 @@ public class ComputingTheParityOfAword_03_Precompute {
 			//flip the counterpart to get the value
 			bitToPairty[ i ] =  (byte)( (int) bitToPairty[ idxCounterpart ] ^ 1) ;
 			
-			if( IS_DEBUG ) {
-				out.println( "i: " + i + ", bitToPairty[ i ]: " + bitToPairty[ i ] );
-			}
+			//if( IS_DEBUG ) { out.println( "i: " + i + ", bitToPairty[ i ]: " + bitToPairty[ i ] ); }
+			
 		}
 		
 		

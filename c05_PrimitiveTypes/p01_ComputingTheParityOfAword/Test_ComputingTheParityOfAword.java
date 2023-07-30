@@ -26,18 +26,21 @@ public class Test_ComputingTheParityOfAword {
 		
 		//8byte = 16hex
 		//WRONG: (long)0x123456789 The literal 0x123456789 of type int is out of range 
-		long[] numbers = { 0xFF, 0xAA, 0x55, 0x33, 0, 5, 16 };
+		long[] numbers = { 0xFF, 0xAA, 0x55, 0x33, 0, 5, 16, 1L << 31 };
 		numbers[4] = (0x01234567 << 32) + 0x9ABCDEF0;
+		
 		
 		out.println("\n\n-----------------------------_0501_01_ComputingTheParityOfAword");
 		for( int i = 0; i < numbers.length; i++ ) {
 			out.println( numbers[i] + " " + _0501_01_ComputingTheParityOfAword.parity( numbers[i] ) );
 		}
 		
+		
 		out.println("\n\n-----------------------------ComputingTheParityOfAword_01_OneByOne");
 		for( int i = 0; i < numbers.length; i++ ) {
 			out.println( numbers[i] + " " + ComputingTheParityOfAword_01_OneByOne.parity( numbers[i] ) );
 		}
+		
 		
 		out.println("\n\n-----------------------------ComputingTheParityOfAword_02_DroppingTailOne");
 		for( int i = 0; i < numbers.length; i++ ) {

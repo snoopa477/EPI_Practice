@@ -3,7 +3,7 @@ import static java.lang.System.out;
 public class ComputingTheParityOfAword_02_DroppingTailOne {
 
 	
-public static short parity( long x ) {
+	public static short parity( long x ) {
 		
 		short result = 0;
 		
@@ -38,7 +38,8 @@ public static short parity( long x ) {
 		
 		
 		//DETAIL: keep drop until x = 0, 0 means no 1 to consider
-		while( x > 0 ) {
+		//while( x > 0 ) {
+		while( x != 0 ) {
 			
 			//flip
 			result = (short)(result ^ 1);

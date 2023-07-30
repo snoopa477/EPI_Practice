@@ -6,12 +6,17 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.StringJoiner;
 public class BitPrinter {
+	
+	public static boolean IS_DEBUG = false;
 
 
 	private static final int INTEGER_LENGTH = 32;
 	private static final int TOKEN_LENGTH = 4;
-	private static final int ONE = 1;
-	private static final int ZERO = 0;
+	//WRONG!!!!!!!!!!!!!!!!!!!!!!! BUT WHY
+	//private static final int ONE = 1;
+	private static final long ONE = 1;
+	//private static final int ZERO = 0;
+	private static final long ZERO = 0;
 	
 	public static String bitString(int number, boolean isReadHelper) {
 		
@@ -66,15 +71,18 @@ public class BitPrinter {
 	
 	
 	//It's only applicable when number > 0 
-	public static <T extends Number> Deque<Integer> toBits_cuttingBoard( T number ) {
-		Deque<Integer> bits = new LinkedList<>();
+	//public static <T extends Number> Deque<Integer> toBits_cuttingBoard( T number ) {
+	public static <T extends Number> Deque<Long> toBits_cuttingBoard( T number ) {
+		//Deque<Integer> bits = new LinkedList<>();
+		Deque<Long> bits = new LinkedList<>();
 		
 		T tempNumber = number;
 		int tempNumverVal = tempNumber.intValue();
 		//The operator > is undefined for the argument type(s) T, int
 		//while( tempNumber > 0 ) {
 		
-		int counter = ZERO;
+		//int counter = ZERO;
+		long counter = ZERO;
 		/* DETAIL: using this method cannot convert negative number to bits
 		 */
 		while( tempNumverVal > 0 ) {
@@ -102,26 +110,37 @@ public class BitPrinter {
 	
 	
 	
-	public static <T extends Number> Deque<Integer> toBits( T number ) {
-		Deque<Integer> bits = new LinkedList<>();
+	//public static <T extends Number> Deque<Integer> toBits( T number ) {
+	public static <T extends Number> Deque<Long> toBits( T number ) {
+		//Deque<Integer> bits = new LinkedList<>();
+		Deque<Long> bits = new LinkedList<>();
 		
 		T tempNumber = number;
-		int tempNumverVal = tempNumber.intValue();
+		//WRONG
+		//int tempNumverVal = tempNumber.intValue();
+		long tempNumverVal = tempNumber.longValue();
+		out.println("debug, the tempNumberVal is " + tempNumverVal);
 		
 		int datatypeLength = getDatatypeLength( number );
-		
+		out.println("debug, the datatypeLength is " + datatypeLength);
 		
 		for( int i = 0 ; i < datatypeLength; i++ ) {
 			
+			if(IS_DEBUG ) out.printf("i: " + i );
+			
 			//WRONG if > ZERO when inspecting leading bit, which stands for negativity or not
+			//QUESTION!!!!!!!!!!!!!!!!!!!!!!!!!!!
+			//if( (tempNumverVal & ( 1 << i ) ) != ZERO ){
 			if( (tempNumverVal & ( ONE << i ) ) != ZERO ){
 				bits.addFirst(ONE);
+				if( IS_DEBUG ) out.printf("val: " + ONE + " truVal:" + ( 1 << i ) + " , ");
 			}
 			else {
 				bits.addFirst(ZERO);
+				if( IS_DEBUG ) out.printf("val: " + ZERO + " truVal:" + ( 1 << i ) + " , ");
 			}
 		}
-		
+		out.println();
 		
 		return bits;
 	}
@@ -134,13 +153,14 @@ public class BitPrinter {
 		
 		StringBuilder sb = new StringBuilder();
 		
-		for( int i = datatypeLength - ONE; i >= ZERO ; i-- ) {
+		for( int i = datatypeLength - (int)ONE; i >= ZERO ; i-- ) {
 			sb.append( String.format("%3d", i) );
 		}
 		sb.append( String.format("\n") );
 		
 		
-		Deque<Integer> bits = toBits(number);
+		//Deque<Integer> bits = toBits(number);
+		Deque<Long> bits = toBits(number);
 		while( bits.size() > 0 ) {
 			sb.append( String.format("%3d", bits.removeFirst()) );
 		}
@@ -170,7 +190,7 @@ public class BitPrinter {
 		
 		//header
 		sb.append( String.format("%2d", ZERO) );
-		for( int i = ONE; i < width; i++  ) {
+		for( int i = (int)ONE; i < width; i++  ) {
 			sb.append( String.format("%3d", i) );
 		}
 		sb.append("\n");
@@ -180,7 +200,8 @@ public class BitPrinter {
 			
 			sj = new StringJoiner("  ", "[", "]");
 			
-			Deque<Integer> bits = toBits( numbers.get(i) );
+			//Deque<Integer> bits = toBits( numbers.get(i) );
+			Deque<Long> bits = toBits( numbers.get(i) );
 			while( bits.size() > 0 ) {
 				//sj.add( String.valueOf( bits.removeFirst() ) );
 				sj.add( String.valueOf( bits.removeLast() ) );
@@ -251,7 +272,7 @@ public class BitPrinter {
 		out.println("- - - - - - - - - - - - - - - - - - toBits_cuttingBoard");
 		
 		for( int number : numbers ) {
-			Deque<Integer> bits = toBits_cuttingBoard(number);
+			Deque<Long> bits = toBits_cuttingBoard(number);
 			out.println( "number: " + number);
 			while( bits.size() > 0 ) {
 				out.print( bits.removeFirst() + " ");
@@ -263,7 +284,7 @@ public class BitPrinter {
 		
 		
 		for( byte number : bytes ) {
-			Deque<Integer> bits = toBits_cuttingBoard(number);
+			Deque<Long> bits = toBits_cuttingBoard(number);
 			out.println( "number: " + number);
 			while( bits.size() > 0 ) {
 				out.print( bits.removeFirst() + " ");
@@ -275,7 +296,7 @@ public class BitPrinter {
 		out.println("- - - - - - - - - - - - - - - - - - toBits");
 		
 		for( int number : numbers ) {
-			Deque<Integer> bits = toBits(number);
+			Deque<Long> bits = toBits(number);
 			out.println( "number: " + number);
 			while( bits.size() > 0 ) {
 				out.print( bits.removeFirst() + " ");
@@ -285,7 +306,7 @@ public class BitPrinter {
 		
 		
 		for( byte number : bytes ) {
-			Deque<Integer> bits = toBits(number);
+			Deque<Long> bits = toBits(number);
 			out.println( "number: " + number);
 			while( bits.size() > 0 ) {
 				out.print( bits.removeFirst() + " ");
