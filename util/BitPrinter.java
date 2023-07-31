@@ -119,10 +119,10 @@ public class BitPrinter {
 		//WRONG
 		//int tempNumverVal = tempNumber.intValue();
 		long tempNumverVal = tempNumber.longValue();
-		out.println("debug, the tempNumberVal is " + tempNumverVal);
+		if( IS_DEBUG ) out.println("debug, the tempNumberVal is " + tempNumverVal);
 		
 		int datatypeLength = getDatatypeLength( number );
-		out.println("debug, the datatypeLength is " + datatypeLength);
+		if( IS_DEBUG ) out.println("debug, the datatypeLength is " + datatypeLength);
 		
 		for( int i = 0 ; i < datatypeLength; i++ ) {
 			
