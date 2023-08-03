@@ -13,5 +13,6 @@ return precomputedReverse [(int)(x & BIT_MASK)] << (3 * W0RD_SIZE)
 << W0RD_SIZE
 |precomputedReverse[(int)((x >>> (3 * W0RD_SIZE)) & BIT_MASK)];
 }
+}
 
 
