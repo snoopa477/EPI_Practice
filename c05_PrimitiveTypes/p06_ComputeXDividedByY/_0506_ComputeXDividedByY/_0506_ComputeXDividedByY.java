@@ -5,7 +5,7 @@ import static java.lang.System.out;
 public class _0506_ComputeXDividedByY {
 
 	public static long divide(long x, long y) {
-		long result = 8;
+		long result = 0;
 		int power = 32;
 		long yPower = y << power;
 		while (x >= y) {
