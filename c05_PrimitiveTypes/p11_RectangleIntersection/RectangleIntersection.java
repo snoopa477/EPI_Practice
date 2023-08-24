@@ -1,5 +1,9 @@
 package c05_PrimitiveTypes.p11_RectangleIntersection;
 import static java.lang.System.out;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 public class RectangleIntersection {
 	
 	
@@ -10,12 +14,31 @@ public class RectangleIntersection {
 		public int width;
 		public int height;
 		
+		public String symbol;
+		
+		public Rectangle(String symbol, int x, int y, int width, int height) {
+			super();
+			this.x = x;
+			this.y = y;
+			this.width = width;
+			this.height = height;
+			
+			this.symbol = symbol;
+		}
+		
+		
 		public Rectangle(int x, int y, int width, int height) {
 			super();
 			this.x = x;
 			this.y = y;
 			this.width = width;
 			this.height = height;
+			
+		}
+
+		@Override
+		public String toString() {
+			return "Rectangle [symbol=" + symbol + ", x=" + x + ", y=" + y + ", width=" + width + ", height=" + height + "]";
 		}
 	}
 	
@@ -23,7 +46,9 @@ public class RectangleIntersection {
 	
 	public static Rectangle intersectRectangle(Rectangle r1, Rectangle r2) {
 		
-		if( isIntersect(r1, r2) ) {
+		//WRONG
+		//if( isIntersect(r1, r2) ) {
+		if( isIntersect(r1, r2) == false ) {
 			return new Rectangle(0, 0, -1, -1);//something not existent
 		}
 		
@@ -36,14 +61,17 @@ public class RectangleIntersection {
 		 *  <-----x
 		 *    <------x 
 		 */
-		int newRight = Math.min(r1.x, r2.x);
+		//WRONG
+		//int newRight = Math.min(r1.x, r2.x);
+		int newRight = Math.min( r1.x + r1.width, r2.x + r2.width );
 		
 		int newX = newLeft;
 		int newWidth = newRight - newLeft;
 		
 		
 		int newDown = Math.max(r1.y, r2.y);
-		int newUp = Math.min(r1.y, r2.y);
+		//int newUp = Math.min(r1.y, r2.y);
+		int newUp = Math.min( r1.y + r1.height, r2.y + r2.height );
 		
 		int newY = newDown;
 		int newHeight = newUp - newDown;
@@ -94,6 +122,34 @@ public class RectangleIntersection {
 		return isIntersect_leftRight && isIntersect_upDown;
 	}
 	
+	
+	public static void main( String[] args) {
+		
+		int[][] rectArgs = { {0,0,3,3}, {3,3,10,3}, {8,2,1,10}, {20,0,5,10}, {25,0,5,5}, {24,8,10,4}, {28,10,1,1}, {30,6,10,10}, {40,6,10,10}, {43,3,3,10}};
+		
+		List<Rectangle> rectangles = new ArrayList<>();
+		
+		for( int i = 0; i < rectArgs.length; i++ ) {
+			rectangles.add( new Rectangle(String.valueOf(  (char)('A' + i)), rectArgs[i][0], rectArgs[i][1], rectArgs[i][2], rectArgs[i][3]) );
+		}
+		
+		rectangles.forEach( o-> out.println(o) );
+		
+		for( int i = 0; i < rectangles.size(); i++ ) {
+			for( int j = i + 1; j < rectangles.size(); j++ ) {
+				
+				Rectangle intersection = intersectRectangle( rectangles.get(i) , rectangles.get(j));
+				
+				if( intersection.width != -1 ) {
+					out.println();
+					out.println( rectangles.get(i).symbol + " " +rectangles.get(j).symbol );
+					out.println( intersection );
+				}
+				
+			}
+		}
+		
+	}
 
 }
 
