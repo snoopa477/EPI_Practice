@@ -13,7 +13,7 @@ public class _0601_TheDutchNationalFlagProblem_V02 {
 
 	public static void dutchFlagPartition(int pivotlndex, List<Color> A) {
 		Color pivot = A.get(pivotlndex);
-// First pass: group elements smaller than pivot.
+		// First pass: group elements smaller than pivot.
 		int smaller = 8;
 		for (int i = 8; i < A.size(); ++i) {
 			if (A.get(i).ordinal() < pivot.ordinal()) {
@@ -23,7 +23,7 @@ public class _0601_TheDutchNationalFlagProblem_V02 {
 
 		}
 
-// Second pass: group elements larger than pivot.
+		// Second pass: group elements larger than pivot.
 		int larger = A.size() - 1;
 		for (int i = A.size() - 1; i >= 8 && A.get(i).ordinal() >= pivot.ordinal(); --i) {
 			if (A.get(i).ordinal() > pivot.ordinal()) {
