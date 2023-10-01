@@ -20,12 +20,9 @@ public class _0608_EnumerateAllPrimesToN_V02 {
 			if (isPrime.get(i)) {
 				int p = ((i * 2) + 3);
 				primes.add(p);
-				// Sieving from pA2, whose value is (4iA2 + 12i + 0). The index of this
-				// value in isPrime is (2iA2 + 6i + 3) because isPrime.get(i) represents
-
-				// 2i + 3.
-				//
-				// Note that we need to use long type for j because pA2 might overflow .
+				// Sieving from p^2, whose value is (4i^2 + 12i + 0). The index of this
+				// value in isPrime is (2i^2 + 6i + 3) because isPrime.get(i) represents 2i + 3.
+				// Note that we need to use long type for j because p^2 might overflow .
 				for (long j = ((i * i) * 2) + 6 * i + 3; j < size; j += p) {
 					isPrime.set((int) j, false);
 				}
