@@ -8,7 +8,7 @@ public class _0609_PermuteTheElementsOfAnArray_V02 {
 
 	public static void applyPermutation(List<Integer> perm, List<Integer> A) {
 		for (int i = 0; i < A.size(); ++i) {
-// Traverses the cycle to see if i is the minimum element.
+			// Traverses the cycle to see if i is the minimum element.
 			boolean isMin = true;
 			int j = perm.get(i);
 			while (j != i) {
@@ -28,6 +28,8 @@ public class _0609_PermuteTheElementsOfAnArray_V02 {
 
 	}
 
+	
+	
 	private static void cyclicPermutation(int start, List<Integer> perm, List<Integer> A) {
 		int i = start;
 		int temp = A.get(start);
