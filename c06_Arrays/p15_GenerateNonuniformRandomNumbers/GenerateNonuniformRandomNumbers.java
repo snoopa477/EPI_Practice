@@ -6,7 +6,10 @@ import java.util.List;
 import java.util.Random;
 public class GenerateNonuniformRandomNumbers {
 	
-	public static int nonuniformRandomNumberGenerationC(List<Integer> values, List<Double> probabilities) {
+	public static boolean IS_DEBUG = false;
+	
+	public static int nonuniformRandomNumberGeneration(List<Integer> values, List<Double> probabilities) {
+		
 		
 		/* PURPOSE:
 		 * given there are probabilities p0, p1, p2, p3
@@ -30,20 +33,20 @@ public class GenerateNonuniformRandomNumbers {
 		 */
 		
 		//step 1
-		List<Double> intervalOfProbs =  buildIntervalOfProbabilities( probabilities );
-		
+		List<Double> intervalOfUnevenProbs =  buildIntervalOfUnEvenProbabilities( probabilities );
+	
 		
 		//step 2 & 3
 		double randomProbability = new Random().nextDouble();
-		int index = findIndexInIntervals(intervalOfProbs, randomProbability);
+		int index_fromUnevenProbs = findIndex_InUnevenIntervals(intervalOfUnevenProbs, randomProbability);
 		
-		
-		return 0;
+
+		return values.get(index_fromUnevenProbs);
 	}
 	
 	
 	
-	private static List<Double> buildIntervalOfProbabilities( List<Double> probabilities ){
+	private static List<Double> buildIntervalOfUnEvenProbabilities( List<Double> probabilities ){
 		
 		List<Double> intervalOfProbs = new ArrayList<>();
 		
@@ -52,8 +55,10 @@ public class GenerateNonuniformRandomNumbers {
 		
 		for( int i = 0; i < probabilities.size(); i++ ) {
 			
-			currentSum_Probabilities += intervalOfProbs.get(lastIndex( intervalOfProbs )) + probabilities.get(i) ;
-			
+			//WRONG: logically wrong, mixing with other ideas with this causing mistake. This would double the probabilities in every iteration
+			//currentSum_Probabilities += intervalOfProbs.get(lastIndex( intervalOfProbs )) + probabilities.get(i) ;
+			currentSum_Probabilities = intervalOfProbs.get(lastIndex( intervalOfProbs )) + probabilities.get(i) ;
+		
 			intervalOfProbs.add( currentSum_Probabilities );
 		}
 		
@@ -68,7 +73,7 @@ public class GenerateNonuniformRandomNumbers {
 	
 	
 	
-	private static int findIndexInIntervals( List<Double> intervals, double key  ) {
+	private static int findIndex_InUnevenIntervals( List<Double> intervals, double key  ) {
 		
 		// extended concept of binarySearch
 		int left = 0;
@@ -95,6 +100,7 @@ public class GenerateNonuniformRandomNumbers {
 		
 		//reasoning: cannot find it, so now 'right' is at left side of 'left'
 		
+		//step 3
 		return right;
 	}
 	
