@@ -22,17 +22,20 @@ public class _0617_ComputeTheSpiralOrderingOfA02dArray {
 			spiralOrdering.add(squareMatrix.get(offset).get(offset));
 			return;
 		}
+		
 		for (int j = offset; j < squareMatrix.size() - offset - 1; ++j) {
 			spiralOrdering.add(squareMatrix.get(offset).get(j));
 		}
+		
 		for (int i = offset; i < squareMatrix.size() - offset - 1; ++i) {
-
 			spiralOrdering.add(squareMatrix.get(i).get(squareMatrix.size() - offset - 1));
 
 		}
+		
 		for (int j = squareMatrix.size() - offset - 1; j > offset; --j) {
 			spiralOrdering.add(squareMatrix.get(squareMatrix.size() - offset - 1).get(j));
 		}
+		
 		for (int i = squareMatrix.size() - offset - 1; i > offset; --i) {
 			spiralOrdering.add(squareMatrix.get(i).get(offset));
 		}
