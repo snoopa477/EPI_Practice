@@ -5,7 +5,7 @@ import static java.lang.System.out;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ComputeTheSpiralOrderingOfA02dArray_02 {
+public class _0617_ComputeTheSpiralOrderingOfA02dArray_02 {
 
 	public static List<Integer> matrixInSpiralOrder(List<List<Integer>> squareMatrix) {
 		

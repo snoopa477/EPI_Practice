@@ -1,20 +1,53 @@
 package c06_Arrays.p17_ComputeTheSpiralOrderingOfA02dArray;
 import static java.lang.System.out;
 
+import java.util.ArrayList;
 import java.util.List;
-public class ComputeTheSpiralOrderingOfA02dArray {
+public class ComputeTheSpiralOrderingOfA02dArray_01_Circle {
 
 	public static List<Integer> matrixInSpiralOrder(List<List<Integer>> squareMatrix) {
 		
-		return null;
+		List<Integer> spiralOrder = new ArrayList<>();
+		
+		int width = squareMatrix.size();
+		boolean isWidthOdd = width % 2 != 0;
+		
+		if( isWidthOdd ) {
+			int centerIndex = ( width -1 ) / 2;
+			//spiral part
+			for( int offset = 0; offset < centerIndex; offset++) {
+				circleOrder(squareMatrix, offset, spiralOrder);
+			}
+			//center part
+			addCenter(squareMatrix, centerIndex, spiralOrder);
+		}
+		//even
+		else {
+			int endIndex = width / 2;
+			//spiral part
+			for( int offset = 0; offset < endIndex; offset++) {
+				circleOrder(squareMatrix, offset, spiralOrder);
+			}
+			//no center part
+		}
+		
+		return spiralOrder;
+	}
+	
+	
+	
+	private static void addCenter(List<List<Integer>> squareMatrix, int centerIndex, List<Integer> sprialOrder) {
+		sprialOrder.add( squareMatrix.get(centerIndex).get(centerIndex) );
 	}
 	
 	
 	
 	private static void circleOrder(List<List<Integer>> squareMatrix, int offset, List<Integer> sprialOrder) {
 		
-		
-		
+		rightOrder(squareMatrix, offset, sprialOrder);
+		downOrder(squareMatrix, offset, sprialOrder);
+		leftOrder(squareMatrix, offset, sprialOrder);
+		upOrder(squareMatrix, offset, sprialOrder);
 	}
 	
 	
