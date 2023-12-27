@@ -7,6 +7,8 @@ public class Test_ComputeTheSpiralOrderingOfA02dArray {
 
 	public static void main(String[] args) {
 		
+		out.println("------------------------------------------------------ ComputeTheSpiralOrderingOfA02dArray_01_Circle");
+		
 		List<List<Integer>> squareMatrix02 = getSquareMatrix(2);
 		out.println( ComputeTheSpiralOrderingOfA02dArray_01_Circle.matrixInSpiralOrder(squareMatrix02) );
 		
@@ -18,6 +20,17 @@ public class Test_ComputeTheSpiralOrderingOfA02dArray {
 		
 		List<List<Integer>> squareMatrix05 = getSquareMatrix(5);
 		out.println( ComputeTheSpiralOrderingOfA02dArray_01_Circle.matrixInSpiralOrder(squareMatrix05) );
+		
+		
+		out.println("------------------------------------------------------ ComputeTheSpiralOrderingOfA02dArray_02_Obstacle");
+		
+		out.println( ComputeTheSpiralOrderingOfA02dArray_02_Obstacle.matrixInSpiralOrder(squareMatrix02) );
+		
+		out.println( ComputeTheSpiralOrderingOfA02dArray_02_Obstacle.matrixInSpiralOrder(squareMatrix03) );
+		
+		out.println( ComputeTheSpiralOrderingOfA02dArray_02_Obstacle.matrixInSpiralOrder(squareMatrix04) );
+		
+		out.println( ComputeTheSpiralOrderingOfA02dArray_02_Obstacle.matrixInSpiralOrder(squareMatrix05) );
 	}
 	
 	
