@@ -68,11 +68,11 @@ public class ComputeARandomSubset {
 				//since index range [0, collectorIndex) already picked, our random range would be [collectorIndex, totalNumberOfElements)
 				int randomIndex = randomGenerator.nextInt( totalNumberOfElements - collectorIndex ) + collectorIndex;
 				
-				int elementNoPointedBy_CollectorIndex = getValueFromIndexToChangedElementNo( indexToChangedElementNo, collectorIndex );
+				int elementNoPointedBy_CollectorIndex = getValue_FromIndexToChangedElementNo( indexToChangedElementNo, collectorIndex );
 				KeyValue keyValueOf_CollectorIndex = new KeyValue(collectorIndex, elementNoPointedBy_CollectorIndex );
 					
 				
-				int elementNoPointedBy_RandomIndex = getValueFromIndexToChangedElementNo( indexToChangedElementNo, randomIndex );
+				int elementNoPointedBy_RandomIndex = getValue_FromIndexToChangedElementNo( indexToChangedElementNo, randomIndex );
 				KeyValue keyValueOf_RandomIndex = new KeyValue(randomIndex, elementNoPointedBy_RandomIndex );
 				
 				
@@ -83,7 +83,7 @@ public class ComputeARandomSubset {
 			
 			List<Integer> randomSubset = new ArrayList<>();
 			for( int i = 0; i < numberOfPickedElements; i++ ) {
-				randomSubset.add( getValueFromIndexToChangedElementNo( indexToChangedElementNo, i ) );
+				randomSubset.add( getValue_FromIndexToChangedElementNo( indexToChangedElementNo, i ) );
 			}
 			
 			return randomSubset;
@@ -100,7 +100,7 @@ public class ComputeARandomSubset {
 		
 		
 		
-		private static Integer getValueFromIndexToChangedElementNo( Map<Integer, Integer> map, Integer key ) {
+		private static Integer getValue_FromIndexToChangedElementNo( Map<Integer, Integer> map, Integer key ) {
 			return map.containsKey(key) ? 
 					/* REASONING:
 					 * Under the assumption: if the element No pointed by index is not touched, then it is not recorded in map object; 

@@ -16,7 +16,7 @@ public class Test_SampleOnlineData {
 		
 //		SampleOnlineData.IS_DEBUG = true;
 		
-		Map<Integer, Integer> statsForEachElement =  getStatsForEachElement(testee, 10000, 5);
+		Map<Integer, Integer> statsForEachElement = getStatsForEachElement(testee, 10000, 5);
 		
 		
 		
