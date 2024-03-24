@@ -11,9 +11,9 @@ public class _0803_TestForCyclicity02 {
 			slow = slow.next;
 			fast = fast.next.next;
 			if (slow == fast) { // There is a cycle.
-// Tries to find the start of the cycle.
+				// Tries to find the start of the cycle.
 				slow = head;
-// Both pointers advance at the same time.
+				// Both pointers advance at the same time.
 				while (slow != fast) {
 					slow = slow.next;
 					fast = fast.next;

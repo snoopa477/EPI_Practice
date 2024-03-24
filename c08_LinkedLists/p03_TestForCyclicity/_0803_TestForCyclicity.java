@@ -11,20 +11,20 @@ public class _0803_TestForCyclicity {
 			slow = slow.next;
 			fast = fast.next.next;
 			if (slow == fast) {
-// There is a cycle, so now let's calculate the cycle length.
+				// There is a cycle, so now let's calculate the cycle length.
 				int cycleLen = 0;
 				do {
 					++cycleLen;
 					fast = fast.next;
 				} while (slow != fast);
-// Finds the start of the cycle.
+				// Finds the start of the cycle.
 				ListNode<Integer> cycleLenAdvancedlter = head;
-// cycleLenAdvancedlter pointer advances cycleLen first.
+				// cycleLenAdvancedlter pointer advances cycleLen first.
 				while (cycleLen-- > 0) {
 					cycleLenAdvancedlter = cycleLenAdvancedlter.next;
 				}
 				ListNode<Integer> iter = head;
-// Both iterators advance in tandem.
+				// Both iterators advance in tandem.
 				while (iter != cycleLenAdvancedlter) {
 					iter = iter.next;
 					cycleLenAdvancedlter = cycleLenAdvancedlter.next;
