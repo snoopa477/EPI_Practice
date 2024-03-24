@@ -7,7 +7,7 @@ public class ReverseASingleSublist {
 	
 	public static ListNode<Integer> reverseSublist(ListNode<Integer> L, int start, int finish) {
 		
-		if( start == finish ) {
+		if( start >= finish ) {
 			return L;
 		}
 		
@@ -68,6 +68,10 @@ public class ReverseASingleSublist {
 		
 		ListNode<Integer> head = beforeHead.next;
 		ListNode<Integer> afterTail = tail.next;
+		
+		if( afterTail == null ) {
+			return;
+		}
 		
 		tail.next = afterTail.next;
 		beforeHead.next = afterTail;
